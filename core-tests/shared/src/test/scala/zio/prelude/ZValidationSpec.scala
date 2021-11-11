@@ -70,6 +70,9 @@ object ZValidationSpec extends DefaultRunnableSpec {
           assert(result)(equalTo(expected))
           assert(result.getLog)(equalTo(expected.getLog))
         }
+      ),
+      suite(label = "getOrElse")(
+        test("")
       )
     )
   )

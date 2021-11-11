@@ -201,6 +201,12 @@ sealed trait ZValidation[+W, +E, +A] { self =>
       case Success(log, value)  => Success(log, value)
     }
 
+  final def getOrElse[A1 >: A](fallback: A1): A1 =
+    fold(_ => fallback, identity)
+
+  def getOrElseLog[A1 >: A](fallback: A1): (W, A1) =
+    fold(_ => fallback, success => (success))
+
   /**
    * Transforms this `ZValidation` to an `Either`, discarding the log.
    */
